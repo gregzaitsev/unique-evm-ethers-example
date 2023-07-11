@@ -1,0 +1,8 @@
+{
+  "name": "hardhat-project",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "bignumber.js": "^9.1.1",
+    "hardhat": "^2.16.1"
+  }
+}
