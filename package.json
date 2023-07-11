@@ -2,7 +2,9 @@
   "name": "hardhat-project",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@unique-nft/solidity-interfaces": "^0.55.1",
     "bignumber.js": "^9.1.1",
+    "chai-as-promised": "^7.1.1",
     "hardhat": "^2.16.1"
   }
 }
