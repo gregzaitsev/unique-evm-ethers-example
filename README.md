@@ -22,9 +22,28 @@ npx hardhat
 npx hardhat run scripts/deploy.ts
 ```
 
-2. Run tests:
-```
+2. Copy `secrets.example.ts` to `secrets.ts` and insert private keys for the accounts that have adequate balance for deploying and calling the smart contracts.
 
+3. Run tests:
+```
+npx hardhat test
 ```
 
 ## Details
+
+Unique networks allow sponsoring on contracts that is setup in a following way (see the test for complete example):
+
+```js
+// Sponsor contract
+[owner, sponsor, caller] = await ethers.getSigners();
+await (await helpers.connect(owner).setSponsor(gasConsumer.getAddress(), sponsor)).wait();
+await (await helpers.connect(sponsor).confirmSponsorship(gasConsumer.getAddress())).wait();
+const sponsorSet = await helpers.connect(owner).hasSponsor(gasConsumer.getAddress());
+expect(sponsorSet).to.be.true;
+
+// Setup sponsoring mode and limits
+await (await helpers.connect(owner).setSponsoringMode(gasConsumer.getAddress(), SponsoringMode.Generous)).wait();
+await (await helpers.connect(owner).setSponsoringRateLimit(gasConsumer.getAddress(), 0)).wait();
+```
+
+Sponsoring allows the sponsor address to pay for any transactions executed with a smart contract, but there is a limitation: Gas price cannot exceed 2.1x of what network reports, otherwise the caller address will be responsible for the transaction fees.
