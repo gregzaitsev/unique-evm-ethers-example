@@ -1,7 +1,14 @@
 {
   "name": "hardhat-project",
+  "scripts": {
+    "devnet:start": "export NETWORK=opal && export VERSION=v942057 && envsubst < docker-compose.tmpl > docker-compose-tmp.yml && docker-compose -f docker-compose-tmp.yml up -d",
+    "devnet:stop": "docker stop node-dev"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@polkadot/api": "10.9.1",
+    "@polkadot/types": "10.9.1",
+    "@polkadot/util-crypto": "12.3.2",
     "@unique-nft/solidity-interfaces": "^0.55.1",
     "bignumber.js": "^9.1.1",
     "chai-as-promised": "^7.1.1",

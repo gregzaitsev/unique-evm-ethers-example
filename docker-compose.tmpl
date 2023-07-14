@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+  node-dev:
+    image: uniquenetwork/node-dev-local:${VERSION}
+    container_name: node-dev
+    environment:
+      - NETWORK=${NETWORK}
+    expose:
+      - 9944
+      - 9933
+    ports:
+      - 127.0.0.1:9944:9944
+      - 127.0.0.1:9933:9933
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "3"
+    command: cargo run --release --features=${NETWORK}-runtime -- --dev -linfo --unsafe-ws-external --rpc-cors=all --unsafe-rpc-external

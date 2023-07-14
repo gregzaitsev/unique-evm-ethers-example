@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
 import { HardhatEthersProvider } from "@nomicfoundation/hardhat-ethers/internal/hardhat-ethers-provider";
-import { constants } from '@unique-nft/solidity-interfaces'
+import { constants } from '@unique-nft/solidity-interfaces';
 import { GasConsumer } from "../typechain-types/GasConsumer";
 import BigNumber from 'bignumber.js';
 BigNumber.config({ DECIMAL_PLACES: 0, ROUNDING_MODE: BigNumber.ROUND_DOWN, EXPONENTIAL_AT: 255 });
@@ -30,9 +30,9 @@ describe("GasConsumer contract", function () {
   } = {gasLimit: "1000000", gasPrice: "0"};
 
   before(async () => {
-    // gasConsumer = await ethers.deployContract("GasConsumer");
-    // await gasConsumer.waitForDeployment();
-    gasConsumer = await ethers.getContractAt("GasConsumer", "0xF195Dc147CeFfAE0B17F0e04d1da3EEaf797EB69");
+    gasConsumer = await ethers.deployContract("GasConsumer");
+    await gasConsumer.waitForDeployment();
+    // gasConsumer = await ethers.getContractAt("GasConsumer", "0xF195Dc147CeFfAE0B17F0e04d1da3EEaf797EB69");
 
     provider = ethers.provider;
     const feeData = await provider.getFeeData();

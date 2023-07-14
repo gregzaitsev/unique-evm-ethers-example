@@ -15,7 +15,7 @@ npx hardhat
 
 4. Add tests
 
-## Execution
+## Execution on Opal
 
 1. Deploy contract:
 ```
@@ -27,6 +27,29 @@ npx hardhat run scripts/deploy.ts
 3. Run tests:
 ```
 npx hardhat test
+```
+
+## Testing on local devnet
+
+1. Run local node and wait until it builds and starts producing blocks:
+```
+npm run devnet:start
+```
+
+2. Send some testnet currency to your accounts in secrets.ts file:
+
+```
+npx hardhat run scripts/fill_accounts.ts
+```
+
+3. Run tests
+```
+npx hardhat test --network local
+```
+
+4. Pause local node when done:
+```
+npm run devnet:stop
 ```
 
 ## Details
